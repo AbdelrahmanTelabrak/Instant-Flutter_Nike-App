@@ -14,7 +14,7 @@ class Onboard2 extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-              margin: const EdgeInsets.only(top: 70, left: 50, right: 50),
+              margin: const EdgeInsets.only(top: 60, left: 50, right: 50),
               child: Image.asset('assets/images/onboard/onboard_shoe2.png'),
           ),
           Container(

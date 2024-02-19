@@ -9,13 +9,16 @@ class Onboard1 extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xff1483C2),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-              margin: const EdgeInsets.only(top: 80, left: 70, right: 70),
+              margin: const EdgeInsets.only(top: 50, left: 70, right: 70),
               child: centeredH1Text('Welcome To Nike', true)),
-          Image.asset('assets/images/onboard/onboard_shoe1.png'),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 15.0),
+            child: Image.asset('assets/images/onboard/onboard_shoe1.png'),
+          ),
         ],
       ),
     );

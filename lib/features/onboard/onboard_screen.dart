@@ -19,6 +19,7 @@ class OnboardScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
+            // height: (_controller.page==0)? 400: 550,
             height: 550,
             child: PageView(
               controller: _controller,
@@ -49,11 +50,14 @@ class OnboardScreen extends StatelessWidget {
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all(
                     RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(13)),
+                        borderRadius: BorderRadius.circular(13),
+                    ),
                   ),
                   backgroundColor: MaterialStateProperty.all(Colors.white),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  _controller.nextPage(duration: Duration.zero, curve: Easing.legacyAccelerate);
+                },
                 child: const Text(
                   'Get Started',
                   style: TextStyle(
