@@ -1,0 +1,14 @@
+Widgets:
+
+GridView
+
+Card
+
+AppBar
+    Build in widget for the appbar in the scaffold
+
+Stack
+    Render children in layers.
+
+Positioned
+    To freely roam the child to wherever place you desire.
