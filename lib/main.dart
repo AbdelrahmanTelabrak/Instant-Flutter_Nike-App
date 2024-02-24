@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_instant/features/home/home.dart';
 import 'package:flutter_instant/features/splash/SplashScreen.dart';
 import 'package:flutter_instant/features/onboard/onboard_screen.dart';
 import 'package:flutter_instant/features/authentication/sign_in_screen.dart';
+import 'package:flutter_instant/sessions/gridView/grid.dart';
 import 'package:flutter_instant/sessions/session18/task.dart';
 import 'package:flutter_instant/sessions/session19/workshop.dart';
 import 'package:flutter_instant/widgets/texts.dart';
@@ -20,9 +22,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SportsStore(),
+      home: HomeScreen(),
     );
   }
 }
