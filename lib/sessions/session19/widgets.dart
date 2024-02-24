@@ -102,9 +102,7 @@ Widget catItem(IconData icon, String txt){
 
 Widget bestSellItem(){
   return Container(
-    height: 250,
     padding: EdgeInsets.all(8.0),
-    margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
