@@ -38,62 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       extendBody: true,
       backgroundColor: const Color(0xffF7F7F9),
       appBar: _appBar(),
-      bottomNavigationBar: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.bottomCenter,
-        children: [
-          SizedBox(
-              width: screenWidth,
-              height: screenWidth * (2 / 9),
-              child: Image.asset(
-                'assets/images/home/background_botnav.png',
-                fit: BoxFit.fill,
-                color: Colors.white,
-              )),
-          SizedBox(
-            width: screenWidth,
-            child: BottomAppBar(
-              color: Colors.transparent,
-              padding: EdgeInsets.only(left: 30, right: 30, bottom: 0),
-              shape: const CircularNotchedRectangle(),
-              elevation: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.asset('assets/icons/botnav_home.svg', width: 24, height: 24, fit: BoxFit.cover,),
-                        SvgPicture.asset('assets/icons/botnav_heart.svg', width: 24, height: 24, fit: BoxFit.cover,),
-                      ],
-                    ),
-                  ),
-                  Expanded(child: SizedBox()),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.asset('assets/icons/botnav_notification.svg', width: 24, height: 24, fit: BoxFit.cover,),
-                        SvgPicture.asset('assets/icons/botnav_profile.svg', width: 24, height: 24, fit: BoxFit.cover,),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 40,
-            child: FloatingActionButton(
-              onPressed: () {},
-              shape: const OvalBorder(),
-              backgroundColor: const Color(0xff0D6EFD),
-              child: SvgPicture.asset('assets/icons/shopping_bag.svg', color: Colors.white,),
-            ),
-          ),
-        ],
-      ),
+      bottomNavigationBar: _bottomNavBar(screenWidth),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
         child: SingleChildScrollView(
@@ -428,6 +373,67 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Stack _bottomNavBar(double screenWidth){
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: Alignment.bottomCenter,
+      children: [
+        SizedBox(
+            width: screenWidth,
+            height: screenWidth * (2 / 8),
+            child: Image.asset(
+              'assets/images/home/background_botnav.png',
+              fit: BoxFit.fill,
+              color: Colors.white,
+            )),
+        SizedBox(
+          width: screenWidth,
+          child: BottomAppBar(
+            color: Colors.transparent,
+            padding: EdgeInsets.only(left: 30, right: 30, bottom: 0),
+            shape: const CircularNotchedRectangle(),
+            elevation: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset('assets/icons/botnav_home.svg', width: 24, height: 24, fit: BoxFit.cover,),
+                      const SizedBox(width: 50),
+                      SvgPicture.asset('assets/icons/botnav_heart.svg', width: 24, height: 24, fit: BoxFit.cover,),
+                    ],
+                  ),
+                ),
+                const Expanded(child: SizedBox()),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SvgPicture.asset('assets/icons/botnav_notification.svg', width: 24, height: 24, fit: BoxFit.cover,),
+                      const SizedBox(width: 50),
+                      SvgPicture.asset('assets/icons/botnav_profile.svg', width: 24, height: 24, fit: BoxFit.cover,),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 45,
+          child: FloatingActionButton(
+            onPressed: () {},
+            shape: const OvalBorder(),
+            backgroundColor: const Color(0xff0D6EFD),
+            child: SvgPicture.asset('assets/icons/shopping_bag.svg', color: Colors.white,),
+          ),
+        ),
+      ],
     );
   }
 }
