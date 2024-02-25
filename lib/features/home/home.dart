@@ -30,6 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   final List<bool> _isFavList = [false, false, false, false];
 
+  int _botNavIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -376,7 +378,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Stack _bottomNavBar(double screenWidth){
+  Stack _bottomNavBar(double screenWidth) {
     return Stack(
       clipBehavior: Clip.none,
       alignment: Alignment.bottomCenter,
@@ -403,9 +405,39 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SvgPicture.asset('assets/icons/botnav_home.svg', width: 24, height: 24, fit: BoxFit.cover,),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _botNavIndex = 0;
+                          });
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/botnav_home.svg',
+                          width: 24,
+                          height: 24,
+                          fit: BoxFit.cover,
+                          color: (_botNavIndex == 0)
+                              ? Color(0xff0D6EFD)
+                              : Color(0xff707B81),
+                        ),
+                      ),
                       const SizedBox(width: 50),
-                      SvgPicture.asset('assets/icons/botnav_heart.svg', width: 24, height: 24, fit: BoxFit.cover,),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _botNavIndex = 1;
+                          });
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/botnav_heart.svg',
+                          width: 24,
+                          height: 24,
+                          fit: BoxFit.cover,
+                          color: (_botNavIndex == 1)
+                              ? Color(0xff0D6EFD)
+                              : Color(0xff707B81),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -414,9 +446,39 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SvgPicture.asset('assets/icons/botnav_notification.svg', width: 24, height: 24, fit: BoxFit.cover,),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _botNavIndex = 2;
+                          });
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/botnav_notification.svg',
+                          width: 24,
+                          height: 24,
+                          fit: BoxFit.cover,
+                          color: (_botNavIndex == 2)
+                              ? Color(0xff0D6EFD)
+                              : Color(0xff707B81),
+                        ),
+                      ),
                       const SizedBox(width: 50),
-                      SvgPicture.asset('assets/icons/botnav_profile.svg', width: 24, height: 24, fit: BoxFit.cover,),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _botNavIndex = 3;
+                          });
+                        },
+                        child: SvgPicture.asset(
+                          'assets/icons/botnav_profile.svg',
+                          width: 24,
+                          height: 24,
+                          fit: BoxFit.cover,
+                          color: (_botNavIndex == 3)
+                              ? Color(0xff0D6EFD)
+                              : Color(0xff707B81),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -430,7 +492,10 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {},
             shape: const OvalBorder(),
             backgroundColor: const Color(0xff0D6EFD),
-            child: SvgPicture.asset('assets/icons/shopping_bag.svg', color: Colors.white,),
+            child: SvgPicture.asset(
+              'assets/icons/shopping_bag.svg',
+              color: Colors.white,
+            ),
           ),
         ),
       ],
