@@ -30,7 +30,20 @@ extension TextSizeExtension on TextSize {
   }
 }
 
-Widget boldText(String txt, {Color color = Colors.black, double fontSize = 34.0, TextAlign align = TextAlign.start}){
+Widget blackText(String txt, {Color color = Colors.black, double fontSize = 34.0, TextAlign align = TextAlign.start}){
+  return Text(
+    txt,
+    textAlign: align,
+    style: TextStyle(
+      color: color,
+      fontSize: fontSize,
+      fontFamily: 'Raleway',
+      fontWeight: FontWeight.w900,
+    ),
+  );
+}
+
+Widget boldText(String txt, {Color color = Colors.black, double fontSize = 36.0, TextAlign align = TextAlign.start}){
   return Text(
     txt,
     textAlign: align,

@@ -23,8 +23,12 @@ class _HomeScreenState extends State<HomeScreen> {
         '\$302.00'),
     ShoeData('assets/images/home/shoe2.png', 'BEST SELLER', 'Nike Air Max',
         '\$752.00'),
+    ShoeData('assets/images/home/shoe1.png', 'POPULAR', 'Nike Jordan',
+        '\$302.00'),
+    ShoeData('assets/images/home/shoe2.png', 'DISCOUNTED', 'Nike Air Max',
+        '\$752.00'),
   ];
-  final List<bool> _isFavList = [false, false];
+  final List<bool> _isFavList = [false, false, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +39,19 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: _appBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _searchSection(),
-            const SizedBox(height: 24),
-            _categorySection(),
-            const SizedBox(height: 24),
-            _popularSection(screenWidth),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _searchSection(),
+              const SizedBox(height: 24),
+              _categorySection(),
+              const SizedBox(height: 24),
+              _popularSection(screenWidth),
+              const SizedBox(height: 24),
+              _newArrivalsSection(screenWidth),
+            ],
+          ),
         ),
       ),
     );
@@ -181,15 +189,14 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Column _popularSection(double screenWidth){
+  Column _popularSection(double screenWidth) {
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             mediumText('Popular Shoes'),
-            mediumText('See all',
-                fontSize: 12, color: const Color(0xff0D6EFD)),
+            mediumText('See all', fontSize: 12, color: const Color(0xff0D6EFD)),
           ],
         ),
         const SizedBox(height: 16),
@@ -200,99 +207,170 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: _shoes.length,
             separatorBuilder: (context, index) => const SizedBox(width: 20),
             itemBuilder: (context, index) {
-              return Container(
-                width: (screenWidth - 60) / 2,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              return _popularItem(screenWidth, index);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Container _popularItem(double screenWidth, int index) {
+    return Container(
+      width: (screenWidth - 60) / 2,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 1,
                 child: Stack(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Stack(
-                            children: [
-                              Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Image.asset(
-                                    _shoes[index].imagePath!,
-                                  )),
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Container(
-                                  child: IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        _isFavList[index] =
-                                        !_isFavList[index];
-                                      });
-                                    },
-                                    icon: Icon(
-                                        _isFavList[index]
-                                            ? Icons.favorite_rounded
-                                            : Icons.favorite_border_rounded,
-                                        color: _isFavList[index]
-                                            ? Colors.redAccent
-                                            : Colors.black54),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                mediumText(_shoes[index].tag!,
-                                    fontSize: 12,
-                                    color: const Color(0xff0D6EFD)),
-                                semiBoldText(_shoes[index].name!,
-                                    fontSize: 16,
-                                    color: const Color(0xff6A6A6A)),
-                                mediumText(_shoes[index].price,
-                                    fontSize: 14),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                     Align(
-                      alignment: Alignment.bottomRight,
-                      child: SizedBox(
-                        width: 34,
-                        height: 36,
-                        child: MaterialButton(
-                          onPressed: () {},
-                          elevation: 0,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(16),
-                              bottomRight: Radius.circular(16),
-                            ),
-                          ),
-                          color: const Color(0xff0D6EFD),
-                          padding: const EdgeInsets.all(0),
-                          child: SvgPicture.asset('assets/icons/plus_icon.svg'),
+                        alignment: Alignment.bottomCenter,
+                        child: Image.asset(
+                          _shoes[index].imagePath!,
+                        )),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Container(
+                        child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _isFavList[index] = !_isFavList[index];
+                            });
+                          },
+                          icon: Icon(
+                              _isFavList[index]
+                                  ? Icons.favorite_rounded
+                                  : Icons.favorite_border_rounded,
+                              color: _isFavList[index]
+                                  ? Colors.redAccent
+                                  : Colors.black54),
                         ),
                       ),
                     ),
                   ],
                 ),
-              );
-            },
+              ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      mediumText(_shoes[index].tag!,
+                          fontSize: 14, color: const Color(0xff0D6EFD)),
+                      semiBoldText(_shoes[index].name!,
+                          fontSize: 18, color: const Color(0xff6A6A6A)),
+                      mediumText(_shoes[index].price, fontSize: 16),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: SizedBox(
+              width: 34,
+              height: 36,
+              child: MaterialButton(
+                onPressed: () {},
+                elevation: 0,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
+                  ),
+                ),
+                color: const Color(0xff0D6EFD),
+                padding: const EdgeInsets.all(0),
+                child: SvgPicture.asset('assets/icons/plus_icon.svg'),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Column _newArrivalsSection(double screenWidth) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            semiBoldText('New Arrivals', fontSize: 16),
+            mediumText('See all', fontSize: 12, color: const Color(0xff0D6EFD)),
+          ],
         ),
+        const SizedBox(height: 21),
+        SizedBox(
+          height: (screenWidth - 40) * (2 / 7),
+          child: ListView.separated(
+            clipBehavior: Clip.none,
+            scrollDirection: Axis.horizontal,
+            itemCount: 2,
+            itemBuilder: (context, index) => _newArrivalItem(screenWidth),
+            separatorBuilder: (context, index) => const SizedBox(width: 20),
+          ),
+        )
       ],
+    );
+  }
+
+  Container _newArrivalItem(double screenWidth) {
+    return Container(
+      width: screenWidth - 40,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        clipBehavior: Clip.none,
+        children: [
+          Image.asset(
+            'assets/images/home/background_newarrival.png',
+            fit: BoxFit.contain,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      mediumText(
+                        'Summer Sale',
+                        fontSize: 12,
+                      ),
+                      blackText('15% OFF', color: const Color(0xff674DC5)),
+                    ],
+                  ),
+                ),
+              ),
+              const Expanded(
+                child: SizedBox(),
+              ),
+            ],
+          ),
+          Positioned(
+            bottom: 20,
+            right: (screenWidth - 40) * 0.1,
+            child: Image.asset('assets/images/home/newarrival_shoe1.png'),
+          ),
+        ],
+      ),
     );
   }
 }
