@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instant/features/home/clipper.dart';
 import 'package:flutter_instant/widgets/texts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../models/shoes_data.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -36,22 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,
       backgroundColor: Colors.white,
       appBar: _appBar(),
       bottomNavigationBar: _bottomNavBar(screenWidth),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   shape: const OvalBorder(),
-      //   backgroundColor: const Color(0xff0D6EFD),
-      //   child: SvgPicture.asset(
-      //     'assets/icons/shopping_bag.svg',
-      //     color: Colors.white,
-      //   ),
-      // ),
       body: ClipPath(
         clipper: HomeClipper(),
         child: Container(
@@ -512,18 +500,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-/*
-* Positioned(
-          bottom: 45,
-          child: FloatingActionButton(
-            onPressed: () {},
-            shape: const OvalBorder(),
-            backgroundColor: const Color(0xff0D6EFD),
-            child: SvgPicture.asset(
-              'assets/icons/shopping_bag.svg',
-              color: Colors.white,
-            ),
-          ),
-        ),
-* */
