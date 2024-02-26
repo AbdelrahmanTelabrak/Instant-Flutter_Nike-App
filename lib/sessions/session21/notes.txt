@@ -1,0 +1,15 @@
+* If some widgets in the screen require change in its data (state), doesn't mean that the
+whole page should be stateful widget, but only the widget itself.
+
+** Widgets that use state:
+1. Switches --- SwitchListTile
+2. Radio Buttons --- RadioListTile
+    group value is the one that will be changed no the value.
+3. Check Box --- CheckboxListTile
+4. TextField
+    1. onChanged vs onSubmitted
+    2. Attributes:
+        1. keyboardType
+        2. maxLength
+        3. readOnly
+        4. label vs hint
