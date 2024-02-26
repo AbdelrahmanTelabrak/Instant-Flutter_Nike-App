@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_instant/features/home/clipper.dart';
 import 'package:flutter_instant/widgets/texts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -35,26 +36,46 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBody: true,
-      backgroundColor: const Color(0xffF7F7F9),
+      backgroundColor: Colors.white,
       appBar: _appBar(),
       bottomNavigationBar: _bottomNavBar(screenWidth),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _searchSection(),
-              const SizedBox(height: 24),
-              _categorySection(),
-              const SizedBox(height: 24),
-              _popularSection(screenWidth),
-              const SizedBox(height: 24),
-              _newArrivalsSection(screenWidth),
-            ],
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   shape: const OvalBorder(),
+      //   backgroundColor: const Color(0xff0D6EFD),
+      //   child: SvgPicture.asset(
+      //     'assets/icons/shopping_bag.svg',
+      //     color: Colors.white,
+      //   ),
+      // ),
+      body: ClipPath(
+        clipper: HomeClipper(),
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: const Color(0xffF7F7F9),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 20),
+                  _searchSection(),
+                  const SizedBox(height: 24),
+                  _categorySection(),
+                  const SizedBox(height: 24),
+                  _popularSection(screenWidth),
+                  const SizedBox(height: 24),
+                  _newArrivalsSection(screenWidth),
+                  const SizedBox(height: 110),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -378,112 +399,101 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Stack _bottomNavBar(double screenWidth) {
+  Widget _bottomNavBar(double screenWidth) {
     return Stack(
+      alignment: Alignment.center,
       clipBehavior: Clip.none,
-      alignment: Alignment.bottomCenter,
       children: [
-        SizedBox(
-            width: screenWidth,
-            height: screenWidth * (2 / 8),
-            child: Image.asset(
-              'assets/images/home/background_botnav.png',
-              fit: BoxFit.fill,
-              color: Colors.white,
-            )),
-        SizedBox(
-          width: screenWidth,
-          child: BottomAppBar(
-            color: Colors.transparent,
-            padding: EdgeInsets.only(left: 30, right: 30, bottom: 0),
-            shape: const CircularNotchedRectangle(),
-            elevation: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _botNavIndex = 0;
-                          });
-                        },
-                        child: SvgPicture.asset(
-                          'assets/icons/botnav_home.svg',
-                          width: 24,
-                          height: 24,
-                          fit: BoxFit.cover,
-                          color: (_botNavIndex == 0)
-                              ? Color(0xff0D6EFD)
-                              : Color(0xff707B81),
-                        ),
+        BottomAppBar(
+          color: Colors.transparent,
+          padding: const EdgeInsets.only(left: 30, right: 30, top: 0),
+          shape: const CircularNotchedRectangle(),
+          elevation: 0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _botNavIndex = 0;
+                        });
+                      },
+                      child: SvgPicture.asset(
+                        'assets/icons/botnav_home.svg',
+                        width: 24,
+                        height: 24,
+                        fit: BoxFit.cover,
+                        color: (_botNavIndex == 0)
+                            ? Color(0xff0D6EFD)
+                            : Color(0xff707B81),
                       ),
-                      const SizedBox(width: 50),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _botNavIndex = 1;
-                          });
-                        },
-                        child: SvgPicture.asset(
-                          'assets/icons/botnav_heart.svg',
-                          width: 24,
-                          height: 24,
-                          fit: BoxFit.cover,
-                          color: (_botNavIndex == 1)
-                              ? Color(0xff0D6EFD)
-                              : Color(0xff707B81),
-                        ),
+                    ),
+                    const SizedBox(width: 50),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _botNavIndex = 1;
+                        });
+                      },
+                      child: SvgPicture.asset(
+                        'assets/icons/botnav_heart.svg',
+                        width: 24,
+                        height: 24,
+                        fit: BoxFit.cover,
+                        color: (_botNavIndex == 1)
+                            ? Color(0xff0D6EFD)
+                            : Color(0xff707B81),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                const Expanded(child: SizedBox()),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _botNavIndex = 2;
-                          });
-                        },
-                        child: SvgPicture.asset(
-                          'assets/icons/botnav_notification.svg',
-                          width: 24,
-                          height: 24,
-                          fit: BoxFit.cover,
-                          color: (_botNavIndex == 2)
-                              ? Color(0xff0D6EFD)
-                              : Color(0xff707B81),
-                        ),
+              ),
+              const Expanded(child: SizedBox()),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _botNavIndex = 2;
+                        });
+                      },
+                      child: SvgPicture.asset(
+                        'assets/icons/botnav_notification.svg',
+                        width: 24,
+                        height: 24,
+                        fit: BoxFit.cover,
+                        color: (_botNavIndex == 2)
+                            ? Color(0xff0D6EFD)
+                            : Color(0xff707B81),
                       ),
-                      const SizedBox(width: 50),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _botNavIndex = 3;
-                          });
-                        },
-                        child: SvgPicture.asset(
-                          'assets/icons/botnav_profile.svg',
-                          width: 24,
-                          height: 24,
-                          fit: BoxFit.cover,
-                          color: (_botNavIndex == 3)
-                              ? Color(0xff0D6EFD)
-                              : Color(0xff707B81),
-                        ),
+                    ),
+                    const SizedBox(width: 50),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _botNavIndex = 3;
+                        });
+                      },
+                      child: SvgPicture.asset(
+                        'assets/icons/botnav_profile.svg',
+                        width: 24,
+                        height: 24,
+                        fit: BoxFit.cover,
+                        color: (_botNavIndex == 3)
+                            ? Color(0xff0D6EFD)
+                            : Color(0xff707B81),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         Positioned(
@@ -502,3 +512,18 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+/*
+* Positioned(
+          bottom: 45,
+          child: FloatingActionButton(
+            onPressed: () {},
+            shape: const OvalBorder(),
+            backgroundColor: const Color(0xff0D6EFD),
+            child: SvgPicture.asset(
+              'assets/icons/shopping_bag.svg',
+              color: Colors.white,
+            ),
+          ),
+        ),
+* */

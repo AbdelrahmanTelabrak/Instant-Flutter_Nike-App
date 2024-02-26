@@ -1,3 +1,5 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instant/features/home/home.dart';
 import 'package:flutter_instant/features/splash/SplashScreen.dart';
@@ -13,6 +15,13 @@ void main(List<String> args) {
   runApp(const MyApp());
 }
 
+// void main() {
+//   runApp(DevicePreview(
+//     enabled: !kReleaseMode,
+//     builder: (context) => const MyApp(),
+//   ));
+// }
+
 /*
 * 'key' is a parameter for the constructor of the StatelessWidget Class.
 * StatelessWidget has better performance because it go through fewer functions
@@ -22,9 +31,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+    locale: DevicePreview.locale(context),
+    builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
