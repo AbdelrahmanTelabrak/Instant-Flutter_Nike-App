@@ -9,14 +9,14 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(milliseconds: 1500), () {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => OnboardScreen()
-          )
-      );
-    });
+    // Timer(const Duration(milliseconds: 1500), () {
+    //   Navigator.pushReplacement(
+    //       context,
+    //       MaterialPageRoute(
+    //           builder: (context) => OnboardScreen()
+    //       )
+    //   );
+    // });
     return Container(
       width: double.infinity,
       height: double.infinity,

@@ -12,6 +12,8 @@ dependencies:
   flutter_svg: ^2.0.9
   smooth_page_indicator: ^1.1.0
   device_preview: ^1.1.0
+  http: ^1.2.0
+  sqflite: ^2.3.2
 
 
 dev_dependencies:

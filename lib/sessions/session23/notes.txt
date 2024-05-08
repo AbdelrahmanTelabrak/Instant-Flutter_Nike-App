@@ -1,0 +1,24 @@
+Content:
+1. PageView
+
+2. Dialog
+    ** The dialog won't work directly inside the MaterialApp tree
+
+3. BottomSheet
+
+4. SnackBar
+
+5. Navigator:
+    1. push
+    2. pushReplacement => replaces the page, not add it to the navigation stack
+    3. pushAndRemoveUntil => // Not yet
+    4. pop => (back) remove the current page from the navigation stack
+    5. pushNamed => write down the routes with certain names in the MaterialApp ('routes') which
+     takes map:
+        'home': (context) => HomePage(),
+        'about': (context) => AboutPage(),
+        --------------------
+        To make the code more clean, create a 'Router' file with all of your routes.
+        --------------------
+        ** To use the pushNamed you have to use 'initialRoute' parameter instead of 'home'.
+    6.

@@ -8,6 +8,11 @@ import 'package:flutter_instant/features/authentication/sign_in_screen.dart';
 import 'package:flutter_instant/sessions/gridView/grid.dart';
 import 'package:flutter_instant/sessions/session18/task.dart';
 import 'package:flutter_instant/sessions/session19/workshop.dart';
+import 'package:flutter_instant/sessions/session22/drawer.dart';
+import 'package:flutter_instant/sessions/session23/session.dart';
+import 'package:flutter_instant/sessions/session26/session.dart';
+import 'package:flutter_instant/sessions/session27/session.dart';
+import 'package:flutter_instant/sessions/workshop2/main.dart';
 import 'package:flutter_instant/widgets/texts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -35,7 +40,7 @@ class MyApp extends StatelessWidget {
     locale: DevicePreview.locale(context),
     builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const DrawerExample(),
     );
   }
 }
@@ -48,8 +53,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         body: Container(
           alignment: Alignment.center,
-          margin: EdgeInsets.all(40),
-          padding: EdgeInsets.all(40),
+          margin: const EdgeInsets.all(40),
+          padding: const EdgeInsets.all(40),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16), color: Colors.red),
           child: Container(

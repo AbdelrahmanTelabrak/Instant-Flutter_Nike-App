@@ -1,0 +1,1 @@
+** Unlike await, 'then' doesn't make the following instructions wait.

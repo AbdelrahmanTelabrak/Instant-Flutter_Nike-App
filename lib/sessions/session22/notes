@@ -1,0 +1,21 @@
+Session 22:
+
+Form:
+    1. keys:
+        - Global Key: can be accessed from anywhere in the application
+        - Local key: can only be accessed inside the widget.
+    2. Controllers:
+        - Each form field must have their own controller to get their values.
+    3. Types of form fields:
+        - TextFormField
+        -
+
+    ** Notes:
+        - autoValidateMode: set the the validate function to be active as soon as the screen is loaded
+        - onSaved: is accessed from the form stated after the validation
+
+Drawer:
+
+
+    ** Notes:
+        - use ListTiles for more control on the content
